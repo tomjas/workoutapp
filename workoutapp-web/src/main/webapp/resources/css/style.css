@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0 auto;
+	border: 1xp solid black;
+}
+
+#header {
+	border: 1px solid black;
+}
+
+#content {
+	float: left;
+	border: 1px solid black;
+}
+
+#links {
+	float: left;
+	border: 1px solid black;
+}
+
+#footer {
+	clear: both;
+	border: 1px solid black;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="/templates/header.html" />
+		</ui:insert>
+	</div>
+	<div id="links">
+		<ui:insert name="links">
+			<ui:include src="/templates/links.html" />
+		</ui:insert>
+	</div>
+		<div id="content">
+		<ui:insert name="content">
+			<ui:include src="/templates/content.html" />
+		</ui:insert>
+	</div>
+		<div id="footer">
+		<ui:insert name="footer">
+			<ui:include src="/templates/footer.html" />
+		</ui:insert>
+	</div>
+	
+</h:body>
+</html>
