@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<ui:composition template="/templates/template.html">
+
+		<ui:define name="content">
+			<h:form>
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel for="username" value="Username:" />
+					<p:inputText id="username" value="#{userController.username}"
+						required="true" label="username" />
+
+					<h:outputLabel for="password" value="Password:" />
+					<p:password id="password" value="#{userController.password}"
+						required="true" label="password" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Login" action="#{userController.login}" type="submit" />
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+
+
+		</ui:define>
+
+		<ui:define name="links">
+			<ui:include src="/templates/links.html" />
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>
