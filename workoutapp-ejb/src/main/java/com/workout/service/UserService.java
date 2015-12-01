@@ -8,12 +8,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.workout.model.User;
+import com.workout.utilities.HashPassword;
 
 @Stateless
 public class UserService implements UserServiceLocal {
 
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 
 	private String login;
 
@@ -40,7 +41,19 @@ public class UserService implements UserServiceLocal {
 		}
 
 		return user;
+	}
 
+	@Override
+	public boolean validateUser(String username, String password) {
+		User user = getUserByLogin(username);
+		String userPassword = user.getPassword();
+		String hashPassword = new HashPassword(password).getHashedPassword();
+
+		if (hashPassword.equals(userPassword)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public String getLogin() {

@@ -1,41 +1,40 @@
 package com.workout.controller;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.workout.model.User;
 import com.workout.service.UserServiceLocal;
-import com.workout.utilities.HashPassword;
 
 @ManagedBean(name = "userController")
+// @RequestScoped
 public class UserController {
 
 	@Inject
-	UserServiceLocal userService;
-	
+	private UserServiceLocal userService;
+
+	@ManagedProperty(value = "#{sessonController}")
+	private SessionController sessionController;
+
 	private String username;
 	private String password;
 	private User user;
 
-	
-	public String login(){
-		if (!username.isEmpty()) {
-			user = userService.getUserByLogin(username);
+	public String login() {
+		if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+			return "failure";
 		}
-		
-		if (user != null) {
-			String userPassword = user.getPassword();
-			String hashPassword = new HashPassword(password).getHashedPassword();
-			
-			if (StringUtils.isNotEmpty(userPassword) && userPassword.equals(hashPassword)) {
-				return "success";
-			}
+
+		if (userService.validateUser(username, password)) {
+			return "success";
 		}
-		return "error";
+
+		return "failure";
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -50,6 +49,18 @@ public class UserController {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void setSessionController(SessionController sessionController) {
+		this.sessionController = sessionController;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

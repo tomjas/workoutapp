@@ -9,4 +9,6 @@ public interface UserServiceLocal {
 
 	User getUserByLogin(String login);
 
+	boolean validateUser(String username, String password);
+
 }

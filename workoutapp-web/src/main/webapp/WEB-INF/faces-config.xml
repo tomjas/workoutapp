@@ -30,8 +30,8 @@
         <to-view-id>/success.jsf</to-view-id>
     </navigation-case>
     <navigation-case>
-        <from-outcome>error</from-outcome>
-        <to-view-id>/error.jsf</to-view-id>
+        <from-outcome>failure</from-outcome>
+        <to-view-id>/failure.jsf</to-view-id>
     </navigation-case>
 	</navigation-rule>
 
