@@ -14,22 +14,27 @@
 		<ui:define name="content">
 			<h:form>
 
-				<h:panelGrid columns="2" cellpadding="5">
-					<h:outputLabel for="username" value="Username:" />
-					<p:inputText id="username" value="#{userController.username}"
-						required="true" label="username" />
+				<p:panelGrid columns="3" cellpadding="5" id="login-form">
+					<p:inputText id="username" value="#{userBean.username}"
+						required="true" label="username"
+						requiredMessage="#{msg['required.field']}" />
+					<p:message for="username" />
+					<p:watermark for="username" value="#{msg['login']}" />
 
-					<h:outputLabel for="password" value="Password:" />
-					<p:password id="password" value="#{userController.password}"
-						required="true" label="password" />
+					<p:password id="password" value="#{userBean.password}"
+						required="true" label="password"
+						requiredMessage="#{msg['required.field']}" />
+					<p:message for="password" />
+					<p:watermark for="password" value="#{msg['password']}" />
 
 					<f:facet name="footer">
-						<p:commandButton value="Login" action="#{userController.login}" type="submit" />
+						<p:commandButton value="#{msg['login']}" action="#{userBean.login}"
+							update="login-form" />
 					</f:facet>
-				</h:panelGrid>
+				</p:panelGrid>
 			</h:form>
 
-
+			<p:link outcome="register" value="#{msg['new.user.register']}" />
 		</ui:define>
 
 		<ui:define name="links">

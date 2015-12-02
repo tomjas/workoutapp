@@ -10,7 +10,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @NamedQueries({ @NamedQuery(name = "User.getById", query = "SELECT u FROM User u WHERE u.id = :id"),
-		@NamedQuery(name = "User.getByLogin", query = "SELECT u FROM User u WHERE u.login = :login") })
+		@NamedQuery(name = "User.getByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
+		@NamedQuery(name = "User.getUsers", query = "SELECT u FROM User u") })
 
 @Entity
 @Table(name = "wo_user")
@@ -22,7 +23,7 @@ public class User {
 	private Integer id;
 
 	@Column(name = "login")
-	private String login;
+	private String username;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -44,12 +45,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getFirstName() {

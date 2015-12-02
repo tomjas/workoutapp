@@ -1,0 +1,36 @@
+body {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#header {
+	border: 1px solid green;
+	position: relative;
+	height: 100px;
+}
+
+#content {
+	width: 100%;
+}
+
+#footer {
+	
+}
+
+.space {
+	display: &nbsp;
+}
+
+a {
+	text-decoration: none;
+}
+
+div#lang-select {
+	float: right;
+	clear: both;
+}
+
+#register-form-panel {
+	margin: 0 auto;
+	
+}

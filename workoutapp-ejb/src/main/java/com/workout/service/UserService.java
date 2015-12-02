@@ -16,17 +16,17 @@ public class UserService implements UserServiceLocal {
 	@PersistenceContext
 	private EntityManager em;
 
-	private String login;
+	private String username;
 
 	public UserService() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public User getUserByLogin(String login) {
-		this.login = login;
-		Query query = em.createNamedQuery("User.getByLogin");
-		query.setParameter("login", login);
+	public User getUserByUsername(String username) {
+		this.username = username;
+		Query query = em.createNamedQuery("User.getByUsername");
+		query.setParameter("username", username);
 
 		@SuppressWarnings("unchecked")
 		List<User> usersList = (List<User>) query.getResultList();
@@ -44,8 +44,16 @@ public class UserService implements UserServiceLocal {
 	}
 
 	@Override
+	public List<User> getAllUsers() {
+		Query query = em.createNamedQuery("User.getUsers");
+		@SuppressWarnings("unchecked")
+		List<User> users = (List<User>) query.getResultList();
+		return users;
+	}
+
+	@Override
 	public boolean validateUser(String username, String password) {
-		User user = getUserByLogin(username);
+		User user = getUserByUsername(username);
 		String userPassword = user.getPassword();
 		String hashPassword = new HashPassword(password).getHashedPassword();
 
@@ -56,12 +64,29 @@ public class UserService implements UserServiceLocal {
 		return false;
 	}
 
-	public String getLogin() {
-		return login;
+	@Override
+	public boolean registerUser(User user) {
+		List<User> users = getAllUsers();
+
+		for (User u : users) {
+			if (u.getUsername().equals(user.getUsername()) || u.getEmail().equals(user.getEmail())) {
+				return false;
+			}
+		}
+
+		user.setPassword(new HashPassword(user.getPassword()).getHashedPassword());
+
+		em.persist(user);
+
+		return true;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

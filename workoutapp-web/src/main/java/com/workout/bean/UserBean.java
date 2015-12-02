@@ -39,7 +39,19 @@ public class UserBean {
 	}
 	
 	public String register(){
-		return "";
+		
+		user = new User();
+		user.setUsername(username);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
+		user.setPassword(password);		
+		
+		if (userService.registerUser(user)) {
+			return "success";
+		}
+		
+		return "failure";
 	}
 
 	public String getUsername() {

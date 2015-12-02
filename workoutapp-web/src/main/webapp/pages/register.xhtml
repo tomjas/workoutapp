@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+
+	<ui:composition template="/templates/template.html">
+
+		<ui:define name="content">
+
+			<p:panel id="register-form-panel">
+				<h:form>
+					<h:panelGrid columns="3" cellpadding="5" id="register-form">
+						<f:facet name="header">
+							<h:outputText value="#{msg['registration.form']}" />
+						</f:facet>
+
+						<p:inputText id="username" value="#{userBean.username}"
+							required="true" requiredMessage="#{msg['required.field']}" />
+						<p:message for="username" />
+						<p:watermark for="username" value="#{msg['login']}" />
+
+						<p:inputText id="first-name" value="#{userBean.firstName}" />
+						<p:message for="first-name" />
+						<p:watermark for="first-name" value="#{msg['firstname']}" />
+
+						<p:inputText id="last-name" value="#{userBean.lastName}" />
+						<p:message for="last-name" />
+						<p:watermark for="last-name" value="#{msg['lastname']}" />
+
+						<p:inputText id="email" value="#{userBean.email}" required="true"
+							requiredMessage="#{msg['required.field']}" />
+						<p:message for="email" />
+						<p:watermark for="email" value="#{msg['email']}" />
+
+						<p:password id="password" value="#{userBean.password}"
+							required="true" feedback="true" match="re-password"
+							promptLabel="#{msg['prompt.enter.password']}"
+							weakLabel="#{msg['prompt.weak.password']}"
+							goodLabel="#{msg['prompt.good.password']}"
+							strongLabel="#{msg['prompt.strong.password']}"
+							requiredMessage="#{msg['required.field']}"
+							validatorMessage="#{msg['password.match.message']}" />
+						<p:message for="password" />
+						<p:watermark for="password" value="#{msg['password']}" />
+
+						<p:password id="re-password" value="#{userBean.password}"
+							required="true" requiredMessage="#{msg['required.field']}" />
+						<p:message for="re-password" />
+						<p:watermark for="re-password" value="#{msg['repeat.password']}" />
+
+						<f:facet name="footer">
+							<p:commandButton value="#{msg['register']}"
+								action="#{userBean.register}" type="submit"
+								update="register-form" />
+						</f:facet>
+					</h:panelGrid>
+				</h:form>
+			</p:panel>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
