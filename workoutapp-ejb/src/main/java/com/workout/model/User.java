@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @NamedQueries({ @NamedQuery(name = "User.getById", query = "SELECT u FROM User u WHERE u.id = :id"),
 		@NamedQuery(name = "User.getByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
@@ -48,6 +49,12 @@ public class User {
 	@Column(name = "role")
 	private Role role = Role.USER;
 
+
+	public boolean isAdmin() {
+		return Role.ADMIN.equals(role);
+	}
+
+	
 	public Integer getId() {
 		return id;
 	}

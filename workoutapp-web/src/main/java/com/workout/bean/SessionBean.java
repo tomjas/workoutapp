@@ -28,11 +28,13 @@ public class SessionBean implements Serializable {
 	public void login(User user) {
 		this.user = user;
 		userLoggedIn = true;
-		SessionManager.setSessionAttribute("username", username);
+		HttpSession session = SessionManager.getSession();
+		session.setAttribute("user",this.user);
 	}
 
 	public void logout() {
-		SessionManager.invalidateSession();
+		HttpSession session = SessionManager.getSession();
+		session.invalidate();
 		userLoggedIn = false;
 	}
 

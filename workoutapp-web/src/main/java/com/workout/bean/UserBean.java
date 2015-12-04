@@ -6,7 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.RequestScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -15,8 +15,7 @@ import com.workout.model.User.Role;
 import com.workout.service.UserServiceLocal;
 
 @ManagedBean(name = "userBean")
-// TODO ustalić scope
-// @RequestScoped
+@RequestScoped
 public class UserBean {
 
 	@EJB
@@ -51,7 +50,7 @@ public class UserBean {
 
 	public String logout() {
 		sessionBean.logout();
-		return "login";
+		return "/pages/public/login";
 	}
 
 	public String register() {
@@ -79,7 +78,7 @@ public class UserBean {
 		}
 		List<User> emptyList = Collections.emptyList();
 		return emptyList;
-				
+
 	}
 
 	public String getUsername() {
