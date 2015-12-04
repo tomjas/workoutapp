@@ -36,14 +36,31 @@
 	</application>
        
     <navigation-rule>
-    <from-view-id>/login.jsf</from-view-id>
+    <from-view-id>/pages/public/login.xhtml</from-view-id>
     <navigation-case>
+    	<from-action>#{userBean.login}</from-action>
         <from-outcome>success</from-outcome>
-        <to-view-id>/success.jsf</to-view-id>
+        <to-view-id>/pages/protected/user/home.xhtml</to-view-id>
+        <redirect />
     </navigation-case>
     <navigation-case>
+    	<from-action>#{userBean.login}</from-action>
         <from-outcome>failure</from-outcome>
-        <to-view-id>/failure.jsf</to-view-id>
+        <to-view-id>/pages/public/login.xhtml</to-view-id>
+    </navigation-case>
+	</navigation-rule>
+       
+    <navigation-rule>
+    <from-view-id>/pages/public/register.xhtml</from-view-id>
+    <navigation-case>
+    	<from-action>#{userBean.register}</from-action>
+        <from-outcome>success</from-outcome>
+        <to-view-id>/pages/public/login.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+    	<from-action>#{userBean.register}</from-action>
+        <from-outcome>failure</from-outcome>
+        <to-view-id>/pages/public/register.xhtml</to-view-id>
     </navigation-case>
 	</navigation-rule>
 

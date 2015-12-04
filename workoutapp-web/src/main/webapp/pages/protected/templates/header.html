@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+</head>
+<body>
+	<ui:composition>
+		<p:panel id="lang-select">
+			<h:outputText value="Hello, #{sessionBean.user.username}" />
+			<h:form>
+				<h:commandLink value="Polski"
+					action="#{languageBean.selectLanguage('pl')}" />
+				<span class="space"></span>
+				<h:commandLink value="English"
+					action="#{languageBean.selectLanguage('en')}" />
+			</h:form>
+		</p:panel>
+	</ui:composition>
+</body>
+</html>

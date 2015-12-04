@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 <h:outputStylesheet library="css" name="style.css" />
 </h:head>
@@ -9,22 +11,22 @@
 
 	<div id="header">
 		<ui:insert name="header">
-			<ui:include src="/templates/header.html" />
+			<ui:include src="/pages/protected/templates/header.html" />
 		</ui:insert>
 	</div>
-	<div id="nav-panel">
-		<ui:insert name="nav-panel">
-			<ui:include src="/templates/nav-panel.html" />
+	<div id="nav-menu">
+		<ui:insert name="nav-menu">
+			<ui:include src="/pages/protected/templates/nav-menu.html" />
 		</ui:insert>
 	</div>
 		<div id="content">
 		<ui:insert name="content">
-			<ui:include src="/templates/content.html" />
+			<ui:include src="/pages/protected/templates/content.html" />
 		</ui:insert>
 	</div>
 		<div id="footer">
 		<ui:insert name="footer">
-			<ui:include src="/templates/footer.html" />
+			<ui:include src="/pages/protected/templates/footer.html" />
 		</ui:insert>
 	</div>
 	

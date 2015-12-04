@@ -5,16 +5,16 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
 </head>
 <body>
-	<ui:composition>
-	<p:panel id="lang-select">
-		<h:form>
-			<h:commandLink value="Polski" action="#{languageBean.selectLanguage('pl')}" />
-			<span class="space"></span>
-			<h:commandLink value="English" action="#{languageBean.selectLanguage('en')}" />
-		</h:form>
-	</p:panel>
+	<ui:composition template="/pages/protected/templates/template.html">
+		<ui:define name="content">
+			<p:panel header="#{msg['page.home']}">
+				<h:outputText value="HOME" />
+			</p:panel>
+		</ui:define>
 	</ui:composition>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<ui:composition template="/templates/template.html">
+	<ui:composition template="/pages/protected/templates/template.html">
 
 		<ui:define name="content">
 			<h:form>
@@ -36,11 +36,7 @@
 
 			<p:link outcome="register" value="#{msg['new.user.register']}" />
 		</ui:define>
-
-		<ui:define name="links">
-			<ui:include src="/templates/links.html" />
-		</ui:define>
-
+		<ui:define name="nav-panel"></ui:define>
 	</ui:composition>
 </body>
 </html>

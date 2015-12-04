@@ -1,20 +1,37 @@
 body {
 	width: 960px;
 	margin: 0 auto;
+	font-size: 14px;
+	color: #aaa;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 #header {
-	border: 1px solid green;
 	position: relative;
 	height: 100px;
+	width: 100%;
+	background-color: #f1f1f1;
 }
 
 #content {
 	width: 100%;
+	float: left;
 }
 
 #footer {
-	
+	width: 100%;
+	background-color: #f1f1f1;
+	float: left;
+	clear: both;
+	text-align: center;
+	padding: 20px 0;
+	clear: both;
+	margin-top: 2px;
+}
+
+#nav-menu {
+	width: 100%;
+	float: left;
 }
 
 .space {
@@ -32,5 +49,8 @@ div#lang-select {
 
 #register-form-panel {
 	margin: 0 auto;
-	
+}
+
+.content-panel {
+	border: 0;
 }

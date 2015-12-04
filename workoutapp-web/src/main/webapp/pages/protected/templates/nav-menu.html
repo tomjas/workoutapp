@@ -10,8 +10,10 @@
 	<ui:composition>
 		<h:form>
 			<p:menubar style="margin:2px 0;">
-				<p:menuitem value="#{msg['menu.home']}" outcome="home" />
-				<p:menuitem value="#{msg['menu.users']}" outcome="users" />
+				<p:menuitem value="#{msg['menu.home']}" outcome="/pages/protected/user/home"
+					rendered="#{sessionBean.userLoggedIn}" />
+				<p:menuitem value="#{msg['menu.users']}" outcome="/pages/protected/admin/users"
+					rendered="#{sessionBean.user.isAdmin()}" />
 				<f:facet name="options">
 					<p:inputText style="margin-right:10px"
 						placeholder="#{msg['menu.search']}" />
