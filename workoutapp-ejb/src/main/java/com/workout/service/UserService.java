@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.workout.model.User;
+import com.workout.model.User.Role;
 import com.workout.utilities.HashPassword;
 
 @Stateless
@@ -19,7 +20,6 @@ public class UserService implements UserServiceLocal {
 	private String username;
 
 	public UserService() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -31,12 +31,9 @@ public class UserService implements UserServiceLocal {
 		@SuppressWarnings("unchecked")
 		List<User> usersList = (List<User>) query.getResultList();
 
-		User user;
+		User user = null;
 
-		if (usersList.isEmpty()) {
-			// Potrzebny Null object pattern czy wystarczy zwrócić new User()?
-			user = new User();
-		} else {
+		if (!usersList.isEmpty()) {
 			user = usersList.get(0);
 		}
 
@@ -44,40 +41,51 @@ public class UserService implements UserServiceLocal {
 	}
 
 	@Override
-	public List<User> getAllUsers() {
+	public List<User> getUsers() {
 		Query query = em.createNamedQuery("User.getUsers");
+		@SuppressWarnings("unchecked")
+		List<User> users = (List<User>) query.getResultList();
+		return users;
+	}
+	
+	@Override
+	public List<User> getUsersByRole(Role role) {
+		Query query = em.createNamedQuery("User.getByRole");
+		query.setParameter("role", role);
 		@SuppressWarnings("unchecked")
 		List<User> users = (List<User>) query.getResultList();
 		return users;
 	}
 
 	@Override
-	public boolean validateUser(String username, String password) {
+	public User validateUser(String username, String password) {
 		User user = getUserByUsername(username);
+		
+		if (user == null) {
+			return null;
+		}
+		
 		String userPassword = user.getPassword();
 		String hashPassword = new HashPassword(password).getHashedPassword();
 
 		if (hashPassword.equals(userPassword)) {
-			return true;
+			return user;
 		}
 
-		return false;
+		return null;
 	}
 
 	@Override
 	public boolean registerUser(User user) {
-		List<User> users = getAllUsers();
+		List<User> users = getUsers();
 
 		for (User u : users) {
 			if (u.getUsername().equals(user.getUsername()) || u.getEmail().equals(user.getEmail())) {
 				return false;
 			}
 		}
-
 		user.setPassword(new HashPassword(user.getPassword()).getHashedPassword());
-
 		em.persist(user);
-
 		return true;
 	}
 

@@ -2,6 +2,8 @@ package com.workout.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,18 +13,23 @@ import javax.persistence.Table;
 
 @NamedQueries({ @NamedQuery(name = "User.getById", query = "SELECT u FROM User u WHERE u.id = :id"),
 		@NamedQuery(name = "User.getByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
-		@NamedQuery(name = "User.getUsers", query = "SELECT u FROM User u") })
+		@NamedQuery(name = "User.getUsers", query = "SELECT u FROM User u"),
+		@NamedQuery(name = "User.getByRole", query = "SELECT u FROM User u WHERE u.role = :role") })
 
 @Entity
 @Table(name = "wo_user")
 public class User {
+
+	public enum Role {
+		USER, ADMIN
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	private Integer id;
 
-	@Column(name = "login")
+	@Column(name = "username")
 	private String username;
 
 	@Column(name = "first_name")
@@ -34,8 +41,12 @@ public class User {
 	@Column(name = "paswword", length = 64)
 	private String password;
 
-	@Column(name = "email", length = 32)
+	@Column(name = "email")
 	private String email;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "role")
+	private Role role = Role.USER;
 
 	public Integer getId() {
 		return id;
@@ -83,6 +94,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 }

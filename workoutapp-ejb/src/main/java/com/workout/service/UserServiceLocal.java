@@ -5,16 +5,19 @@ import java.util.List;
 import javax.ejb.Local;
 
 import com.workout.model.User;
+import com.workout.model.User.Role;
 
 @Local
 public interface UserServiceLocal {
 
-	boolean validateUser(String username, String password);
+	User validateUser(String username, String password);
 
 	boolean registerUser(User user);
 
 	User getUserByUsername(String username);
 
-	List<User> getAllUsers();
+	List<User> getUsers();
+
+	List<User> getUsersByRole(Role role);
 
 }

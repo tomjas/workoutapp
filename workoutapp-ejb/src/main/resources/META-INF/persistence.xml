@@ -27,6 +27,7 @@
          can find it in the source at ear/src/main/application/META-INF/workoutapp-ds.xml -->
       <!-- jta-data-source>java:jboss/datasources/workoutappDS</jta-data-source-->
       <properties>
+      <property name="hibernate.hbm2ddl.auto" value="update" />
       </properties>
    </persistence-unit>
 </persistence>
