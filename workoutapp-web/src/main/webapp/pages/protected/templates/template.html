@@ -4,11 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+<f:view locale="#{languageBean.locale}" />
 <h:head>
-<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-
+	<h:outputStylesheet library="css" name="style.css" />
 	<div id="header">
 		<ui:insert name="header">
 			<ui:include src="/pages/protected/templates/header.html" />
@@ -19,16 +19,16 @@
 			<ui:include src="/pages/protected/templates/nav-menu.html" />
 		</ui:insert>
 	</div>
-		<div id="content">
+	<div id="content">
 		<ui:insert name="content">
 			<ui:include src="/pages/protected/templates/content.html" />
 		</ui:insert>
 	</div>
-		<div id="footer">
+	<div id="footer">
 		<ui:insert name="footer">
 			<ui:include src="/pages/protected/templates/footer.html" />
 		</ui:insert>
 	</div>
-	
+
 </h:body>
 </html>

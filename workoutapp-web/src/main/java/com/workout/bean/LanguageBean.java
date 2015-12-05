@@ -3,8 +3,9 @@ package com.workout.bean;
 import java.io.Serializable;
 import java.util.Locale;
 
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean(name="languageBean")
@@ -12,15 +13,22 @@ import javax.faces.context.FacesContext;
 public class LanguageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String language;
 	private Locale locale;
 	
-	public String selectLanguage(String language){
-		this.language = language;
-		locale = new Locale(language);
+	@PostConstruct
+	public void init(){
+		// getRequestLocale powoduje ustwienie locali żądanych przez przeglądarkę
+//		locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
+		
+		// Domyślne locale z ustawień faces-config.xml
+		locale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale();
+	}
+	
+	public void selectLanguage(String language){
+		this.locale = new Locale(language);
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-		return "";
 	}
 
 	public String getLanguage() {
