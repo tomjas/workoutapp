@@ -26,6 +26,7 @@
 						requiredMessage="#{msg['required.field']}" />
 					<p:message for="password" />
 					<p:watermark for="password" value="#{msg['password']}" />
+					<p:growl for="username" />
 
 					<f:facet name="footer">
 						<p:commandButton value="#{msg['login']}" action="#{userBean.login}"

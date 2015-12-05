@@ -4,9 +4,11 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -23,6 +25,9 @@ public class UserBean {
 
 	@ManagedProperty(value = "#{sessionBean}")
 	private SessionBean sessionBean;
+
+	@ManagedProperty(value = "#{messageBean}")
+	private MessageBean messageBean;
 
 	private String username;
 	private String password;
@@ -44,6 +49,11 @@ public class UserBean {
 			sessionBean.login(user);
 			return "success";
 		}
+		
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		String message = messageBean.getMessageTranslated("message.login.error");
+		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message);
+		ctx.addMessage("username", facesMessage);
 
 		return "failure";
 	}
@@ -148,6 +158,10 @@ public class UserBean {
 
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
+	}
+
+	public void setMessageBean(MessageBean messageBean) {
+		this.messageBean = messageBean;
 	}
 
 }

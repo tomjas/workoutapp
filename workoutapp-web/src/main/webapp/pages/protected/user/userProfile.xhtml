@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-<meta charset="UTF-8"/>
+<head>
+<meta charset="UTF-8" />
 <title>Insert title here</title>
-</h:head>
-<h:body>
+</head>
+<body>
 	<ui:composition template="/pages/protected/templates/template.html">
 		<ui:define name="content">
-			<h:link value="Login" outcome="login" />
+			<p:panel header="#{msg['page.userprofile']}">
+				<p:dataList var="user" value="#{sessionBean.user}">
+			#{user.username}, #{user.email}
+				</p:dataList>
+			</p:panel>
 		</ui:define>
 	</ui:composition>
-</h:body>
+</body>
 </html>

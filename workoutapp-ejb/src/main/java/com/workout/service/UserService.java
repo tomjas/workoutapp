@@ -7,11 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.workout.interceptor.Log;
 import com.workout.model.User;
 import com.workout.model.User.Role;
-import com.workout.utilities.HashPassword;
+import com.workout.utility.HashPassword;
 
 @Stateless
+@Log
 public class UserService implements UserServiceLocal {
 
 	@PersistenceContext
@@ -47,7 +49,7 @@ public class UserService implements UserServiceLocal {
 		List<User> users = (List<User>) query.getResultList();
 		return users;
 	}
-	
+
 	@Override
 	public List<User> getUsersByRole(Role role) {
 		Query query = em.createNamedQuery("User.getByRole");

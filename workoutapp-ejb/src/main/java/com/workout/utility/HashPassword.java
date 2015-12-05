@@ -1,4 +1,4 @@
-package com.workout.utilities;
+package com.workout.utility;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

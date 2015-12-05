@@ -9,8 +9,11 @@
 <body>
 	<ui:composition>
 		<p:panel id="lang-select">
-			<h:outputText value="Hello, #{sessionBean.user.username}" />
-			<h:form>
+			<p:link outcome="/pages/protected/user/userProfile"
+				value="#{sessionBean.user.username}"
+				rendered="#{sessionBean.userLoggedIn}" />
+			
+			<h:form style="display:inline;">
 				<h:commandLink value="Polski"
 					action="#{languageBean.selectLanguage('pl')}" />
 				<span class="space"></span>
