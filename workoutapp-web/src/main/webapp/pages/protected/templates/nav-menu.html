@@ -18,7 +18,7 @@
 					rendered="#{sessionBean.user.isAdmin()}" />
 				<f:facet name="options">
 					<p:inputText style="margin-right:10px"
-						placeholder="#{msg['menu.search']}" />
+						placeholder="#{msg['menu.search']}" rendered="#{sessionBean.userLoggedIn}" />
 					<p:commandButton type="submit" value="#{msg['logout']}"
 						icon="ui-icon-extlink" action="#{userBean.logout}"
 						rendered="#{sessionBean.userLoggedIn}" />

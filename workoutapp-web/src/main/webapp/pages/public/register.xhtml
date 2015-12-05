@@ -35,7 +35,8 @@
 						<p:watermark for="last-name" value="#{msg['lastname']}" />
 
 						<p:inputText id="email" value="#{userBean.email}" required="true"
-							requiredMessage="#{msg['required.field']}" />
+							requiredMessage="#{msg['required.field']}"
+							validator="#{userBean.verifyEmail}" />
 						<p:message for="email" />
 						<p:watermark for="email" value="#{msg['email']}" />
 

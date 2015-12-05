@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
@@ -15,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.workout.model.User;
 import com.workout.model.User.Role;
 import com.workout.service.UserServiceLocal;
+import com.workout.utility.UserUtils;
 
 @ManagedBean(name = "userBean")
 @RequestScoped
@@ -49,7 +51,7 @@ public class UserBean {
 			sessionBean.login(user);
 			return "success";
 		}
-		
+
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		String message = messageBean.getMessageTranslated("message.login.error");
 		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message);
@@ -88,6 +90,18 @@ public class UserBean {
 		}
 		List<User> emptyList = Collections.emptyList();
 		return emptyList;
+
+	}
+
+	public void verifyEmail(FacesContext context, UIComponent uiComponent, Object email) {
+
+		UserUtils userUtils = new UserUtils();
+
+		if (!userUtils.verifyEmail((String) email)) {
+			String message = messageBean.getMessageTranslated("message.wrong.email.error");
+			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message);
+			context.addMessage(uiComponent.getClientId(context), facesMessage);
+		}
 
 	}
 
